@@ -26,7 +26,7 @@ Welcome to Organic Zone, your go-to destination for fresh organic food, includin
 
 To run this project locally or contribute to its development, follow these steps:
 
-1. Clone the repository to your local machine: 
+1. Clone the repository to your local machine: `git clone https://github.com/S-N-Abbas/Organic-Zone.git`
 
 2. Open the project in Visual Studio (or your preferred .NET development environment).
 
