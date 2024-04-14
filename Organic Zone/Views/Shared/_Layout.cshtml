@@ -1,0 +1,332 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@ViewBag.Title - Organic Zone</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Organic Zone, Organic Food, Natural Food, Fresh Vegitables and Fruits, No Pesticide Food, Organic" />
+
+    <script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+               function hideURLbar(){ window.scrollTo(0,1); }
+    </script>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <!-- font-awesome-icons -->
+    <link href="~/Content/font-awesome.css" rel="stylesheet">
+
+    @Scripts.Render("~/bundles/modernizr")
+    <!-- //font-awesome-icons -->
+    <link href="~/Content/owl.carousel.css" rel="stylesheet">
+    <link href="~/Content/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="//fonts.googleapis.com/css?family=Tangerine:400,700" rel="stylesheet">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    @{
+        string classes = "center-container";
+        if (ViewBag.IsHome == null)
+        {
+            classes = "center-container inner-container";
+        }
+    }
+    <!-- banner -->
+    <div class="banner_top" id="home">
+        <div data-vide-bg="/video/Grow">
+            <div class="@classes">
+                <div class="w3_agile_header">
+                    <div class="w3_agileits_logo">
+                        <h1><a href="~/Home/Index">Organic Zone<span>Fresh Food</span></a></h1>
+                    </div>
+                    <div class="w3_menu">
+                        <div class="agileits_w3layouts_banner_info">
+                            @using (Html.BeginForm("Index", "Items", FormMethod.Post))
+                            {
+                                <input type="search" name="search" id="search">
+                                <input type="submit" value="Search">
+                            }
+                        </div>
+                        <div class="top-nav">
+                            <nav class="navbar navbar-default">
+                                <div class="container">
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                        Menu
+                                    </button>
+                                </div>
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                    <ul class="nav navbar-nav">
+                                        <li class="home-icon"><a href="~/Home/Index"><span class="fa fa-home" aria-hidden="true"></span></a></li>
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <li>@Html.ActionLink("Messages", "Index", "Messages")</li>
+                                            <li>@Html.ActionLink("Orders", "Index", "Orders")</li>
+                                        }
+                                        else
+                                        {
+                                            <li><a href="~/Home/About">About</a></li>
+                                            <li><a href="~/Home/Contact">Contact</a></li>
+                                        }
+                                        <li>@Html.ActionLink("Store", "Index", "Items")</li>
+                                        <li>
+                                            <a href="#" class="dropdown-toggle hvr-bounce-to-bottom" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                @Html.Partial("_LoginPartial")
+                                            </ul>
+                                        </li>
+                                        @if(!User.IsInRole("Admin"))
+                                        {
+                                            Html.RenderAction("CartSummary", "ShoppingCart");
+                                        }
+                                    </ul>
+                                    <div class="clearfix"> </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+                <!-- banner-text -->
+                @if (ViewBag.IsHome != null)
+                {
+                    <div class="slider">
+                        <div class="callbacks_container">
+                            <ul class="rslides callbacks callbacks1" id="slider4">
+                                <li>
+                                    <div class="agileits-banner-info">
+                                        <h4>Variety of Organic Food</h4>
+                                        <h3>Just select healthy and natural food for yourself</h3>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="agileits-banner-info">
+                                        <h4>Stay Healthy and Protected</h4>
+                                        <h3>Feed healthy food to your kids to keep them strong</h3>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="agileits-banner-info">
+                                        <h4>Searching for Organic Food...?</h4>
+                                        <h3>We serve you the way you want</h3>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!--banner Slider starts Here-->
+                    <div class="w3_agileits_social_media ">
+                        <ul class="social-icons3">
+                            <li class="agileinfo_share">Share On</li>
+                            <li><a href="#" class="wthree_facebook"> <i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a href="#" class="wthree_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                            <li><a href="#" class="wthree_dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+                            <li><a href="#" class="wthree_behance"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                }
+                else
+                {
+                    <h2 class="inner-heading-agileits-w3layouts">@ViewBag.Title</h2>
+                }
+
+            </div>
+        </div>
+    </div>
+    <!-- //banner -->
+
+    @if (ViewBag.IsHome != null)
+    {
+        <!-- About -->
+        <div class="about" id="about">
+            <div class="container">
+            </div>
+        </div>
+    }
+
+
+    @RenderBody()
+
+    <!--footer-->
+    <div class="footer_bottom section">
+        <div class="agileits-w3layouts-footer">
+            <div class="container">
+                <div class="col-md-4 w3-agile-grid">
+                    <h5>About Us</h5>
+                    <p>We are concious about health. Food is a vital requirement of life. But not all vegitables grow healthy. Only organically grown food is natural and healthy. We grow food without spraying fatal chemicals. You can shop organic food from here. We have all kinds of vegitables and fruits.</p>
+                    <div class="w3_agileits_social_media team_agile_w3l team footer">
+                        <ul class="social-icons3">
+                            <li><a href="#" class="wthree_facebook"> <i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a href="#" class="wthree_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                            <li><a href="#" class="wthree_dribbble"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+                            <li><a href="#" class="wthree_behance"><i class="fa fa-behance" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="col-md-4 w3-agile-grid mid-w3-add">
+                    <h5>Address</h5>
+                    <div class="w3-address">
+                        <div class="w3-address-grid">
+                            <div class="w3-address-left">
+                                <i class="fa fa-phone" aria-hidden="true"></i>
+                            </div>
+                            <div class="w3-address-right">
+                                <h6>Mobile Number</h6>
+                                <p>0044 7454629913</p>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div class="w3-address-grid">
+                            <div class="w3-address-left">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                            </div>
+                            <div class="w3-address-right">
+                                <h6>Email Address</h6>
+                                <p>Email :<a href="mailto:hamzamunir0066@gmail.com"> Email Us</a></p>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                        <div class="w3-address-grid">
+                            <div class="w3-address-left">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            </div>
+                            <div class="w3-address-right">
+                                <h6>Location</h6>
+                                <p>
+                                    Bhumbla P/O Sadatpur Teh Sarai Alamgir District Gujrat.
+                                    <span>Contact : 0044 7454629913</span>
+                                </p>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 footer-right w3-agile-grid">
+                    <div class="agile_footer_grid">
+                        <h5>New Productions</h5>
+                        <ul class="agileits_w3layouts_footer_grid_list">
+                            <li>
+                                <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                                <a href="#" data-toggle="modal" data-target="#myModal1">Okra </a>
+                            </li>
+                            <li>
+                                <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                                <a href="#" data-toggle="modal" data-target="#myModal1">Honey</a>
+                            </li>
+                            <li>
+                                <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                                <a href="#" data-toggle="modal" data-target="#myModal1">Tomato</a>
+                            </li>
+                            <li>
+                                <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                                <a href="#" data-toggle="modal" data-target="#myModal1">Oil</a>
+                            </li>
+                            <li>
+                                <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                                <a href="#" data-toggle="modal" data-target="#myModal1">Wheat</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <h5>Stay in Touch</h5>
+                    <form action="#" method="post">
+                        <input type="email" name="Email" placeholder="Email Id" required="">
+                        <input type="submit" value="Subscribe">
+                    </form>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; @DateTime.Now.Year Organic Zone. All rights reserved</p>
+        </div>
+    </div>
+    <!-- Modal1 -->
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4>Organic Zone</h4>
+                    <img src="images/f1.jpg" alt=" " class="img-responsive">
+                    <h5>Item Name </h5>
+                    <p>This item is currently not available.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //Modal1 -->
+    <!--//footer-->
+    <!-- js -->
+    <script type="text/javascript" src="~/Scripts/jquery-2.1.4.min.js"></script>
+    @RenderSection("scripts", required: false)
+    <!-- //js -->
+    <script src="~/Scripts/responsiveslides.min.js"></script>
+    <script>
+        // You can also use "$(window).load(function() {"
+        $(function () {
+            // Slideshow 4
+            $("#slider4").responsiveSlides({
+                auto: true,
+                pager: true,
+                nav: false,
+                speed: 1000,
+                namespace: "callbacks",
+                before: function () {
+                    $('.events').append("<li>before event fired.</li>");
+                },
+                after: function () {
+                    $('.events').append("<li>after event fired.</li>");
+                }
+            });
+
+        });
+    </script>
+    <!-- for-Clients -->
+    <script src="~/Scripts/owl.carousel.js"></script>
+    <!-- requried-jsfiles-for owl -->
+    <script>
+        $(document).ready(function () {
+            $("#owl-demo2").owlCarousel({
+                items: 1,
+                lazyLoad: false,
+                autoPlay: true,
+                navigation: false,
+                navigationText: false,
+                pagination: true,
+            });
+        });
+    </script>
+    <!-- //requried-jsfiles-for owl -->
+    <!-- //for-Clients -->
+    <!-- cart-js -->
+    <script src="~/Scripts/minicart.min.js"></script>
+    <script>
+        // Mini Cart
+        paypal.minicart.render({
+            action: '#'
+        });
+
+        if (~window.location.search.indexOf('reset=true')) {
+            paypal.minicart.reset();
+        }
+    </script>
+    @{Html.RenderAction("Index", "ShoppingCart"); }
+    <!-- //cart-js -->
+    <!-- video-bg -->
+    <script src="~/Scripts/jquery.vide.min.js"></script>
+    <!-- //video-bg -->
+    <!-- Nice scroll -->
+    <script src="~/Scripts/jquery.nicescroll.js"></script>
+    <script src="~/Scripts/scripts.js"></script>
+    <!-- //Nice scroll -->
+    <!-- for bootstrap working -->
+    <script type="text/javascript" src="~/Scripts/bootstrap-3.1.1.min.js"></script>
+    <!-- //for bootstrap working -->
+</body>
+</html>

@@ -1,0 +1,32 @@
+﻿@model Organic_Zone.Models.FAQ
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<div class="contact-top-agileinfo">
+    <div class="container">
+        <h3 class="title-w3layouts contact-head">Add FAQ</h3>
+    </div>
+</div>
+
+
+<div class="jarallax contact-bottom contact-right-w3l" id="contact">
+    <div class="col-md-7">
+        <h3 class="title-w3layouts white-agileits">Add new item</h3>
+        @using (Html.BeginForm("Create", "FAQs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+
+            @Html.TextBoxFor(m => m.Question, new { placeholder = "Question" })
+
+            @Html.TextAreaFor(m => m.Answer, new { placeholder = "Answer" })
+
+            <input type="submit" value="Add Item" />
+        }
+    </div>
+    <div class="clearfix"></div>
+</div>

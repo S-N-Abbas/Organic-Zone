@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Organic_Zone.Models.Message>
+
+@{
+    ViewBag.Title = "Messages";
+}
+
+<div class="contact-top-agileinfo">
+    <div class="container">
+        <h3 class="title-w3layouts contact-head">Messages</h3>
+        <p>@ViewBag.Message</p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.MessageId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Subject)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MessageId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject)
+                    </td>
+
+                            <td>
+                                @Html.ActionLink("Delete", "Delete", new { id = item.MessageId }, new { @class = "ActionButton" })
+                            </td>
+
+
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.MessageId }, new { @class = "ActionButton" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

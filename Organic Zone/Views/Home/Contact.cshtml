@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+<!--contact-->
+<div class="contact-top-agileinfo">
+    <div class="container">
+        <h3 class="title-w3layouts contact-head">We Love to Meet New people</h3>
+        <div class="col-md-6 contact-left-wthree">
+            <h5>Customer Care</h5>
+            <div class="customer-info-w3ls">
+                <img src="/images/Team.jpg" alt="" />
+                <div class="customer-right">
+                    <h6>Carl Haddon</h6>
+                    <p>Sales manager<span>Toll free +012 345 6780</span></p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="customer-info-w3ls">
+                <img src="/images/Team.jpg" alt="" />
+                <div class="customer-right">
+                    <h6>Mark Johnson</h6>
+                    <p>Web Admin<span>Toll free +045 123 6780</span></p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="col-md-6 contact-right-wthree">
+            <h5>Others Ways to Connect</h5>
+            <div class="connect-w3-agile">
+                <i class="fa fa-facebook-square ione" aria-hidden="true"></i>
+                <p>Contact us on Facebook and <a href="#">like our page on Facebook</a>.</p>
+                <div class="clearfix"></div>
+            </div>
+            <div class="connect-w3-agile">
+                <i class="fa fa-twitter-square itwo" aria-hidden="true"></i>
+                <p><a href="#">Follow us on twitter</a>.</p>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- contact-form-->
+<div class="jarallax contact-bottom" id="contact">
+    <div class="col-md-7 contact-right-w3l">
+        <h3 class="title-w3layouts white-agileits">Reach Out to Us</h3>
+
+        @using (Html.BeginForm("Create", "Messages", FormMethod.Post))
+        {
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+
+            <input type="text" class="name" name="FirstName" id="FirstName" placeholder="First Name">
+            <input type="text" class="name" name="LastName" id="LastName" placeholder="Last Name">
+            <input type="email" class="name" name="Email" id="Email" placeholder="Email" required>
+            <input type="text" class="name" name="Subject" id="Subject" placeholder="Subject" required>
+            <textarea name="MessageText" id="MessageText" placeholder="Your Message" required></textarea>
+            <input type="submit" value="Send message">
+        }
+    </div>
+    <div class="col-md-5 agileits_w3layouts-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d614560.8691739145!2d-3.063021237962892!3d53.00906579999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4870a78f90981831%3A0xbb8b2684b3956905!2sStaffordshire%20University!5e0!3m2!1sen!2s!4v1672051336435!5m2!1sen!2s"></iframe>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<!-- //contact-form -->
+<!-- //contact -->

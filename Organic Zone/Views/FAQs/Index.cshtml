@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Organic_Zone.Models.FAQ>
+
+<div class="FAQs">
+    <h1 class="Center">Frequently Asked Questions</h1>
+    <div class="FAQSearch">
+        @using (Html.BeginForm("Index", "FAQs", FormMethod.Post))
+        {
+        <p class="Center">
+            <input type="text" id="search" name="search" placeholder="Search FAQs" />
+            <input type="submit" value="Search" />
+        </p>
+        }
+
+    </div>
+    @if (User.IsInRole("Admin"))
+    {
+        <p class="Center">@Html.ActionLink("Add New Question", "Create", "FAQs")</p>
+    }
+    <div class="faq-container">
+        @foreach (var item in Model)
+        {
+            <div class="faq">
+                <h2 class="faq-title">
+                    @item.Question
+                </h2>
+                <p class="faq-text">
+                    @item.Answer
+                </p>
+                <br />
+               @if (User.IsInRole("Admin"))
+                {
+                    <p>@Html.ActionLink("Edit", "Edit", new { id = item.FAQId })</p>
+                }
+
+
+                    <button class="faq-toggle">
+                        <i class="fa fa-chevron-down"></i>
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+            }
+    </div>
+    <script src="~/Scripts/MyJS.js"></script>
+</div>

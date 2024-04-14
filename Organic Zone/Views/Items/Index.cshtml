@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Organic_Zone.Models.Item>
+
+@{
+    ViewBag.Title = "Store";
+}
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<div class="buy-now">
+    <div class="container">
+        <div class="heading-setion-w3ls">
+            <h3 class="title-w3layouts">Select Your Organic Food</h3>
+            @if (User.IsInRole("Admin"))
+            {
+                <p class="Center">
+                    @Html.ActionLink("Add New Item", "Create", "Items")
+                </p>
+            }
+
+        </div>
+        <div class="team-grids">
+            <!-- Bottom to top-->
+            <div class="details-top-w3ls">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-3 team-grid">
+                        <!-- normal -->
+                        <div class="ih-item circle effect10 bottom_to_top">
+                            <div class="img"><img src="@item.Thumbnail" alt="img"><span>@item.ItemName</span></div>
+                            <div class="info">
+                                @if (item.Discount == 0)
+                                {
+                                    <h3>&pound;@item.Price</h3>
+                                }
+                                else
+                                {
+                                    double price = item.Price - item.Discount;
+
+                                    <h3>&pound;@price<span>@item.Price.ToString("0.0")</span></h3>
+                                }
+                                <ul>
+                                    <li class="cary-li-w3-agileits">
+
+                                        @if (User.IsInRole("Admin"))
+                                        {
+                                            <div class="snipcart-details top_brand_home_details">
+                                                @Html.ActionLink("Edit", "Edit", "Items", new { ItemName = item.ItemName }, new { @class = "button AddLink" })
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="snipcart-details top_brand_home_details">
+                                                <input type="button" class="button AddLink" data-id="@item.ItemName" value="Add To Cart">
+                                            </div>
+                                        }
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- end normal -->
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

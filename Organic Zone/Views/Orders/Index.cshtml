@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Organic_Zone.Models.Order>
+
+@{
+    ViewBag.Title = "Orders";
+}
+
+<div class="contact-top-agileinfo">
+    <div class="container">
+        <h3 class="title-w3layouts contact-head">Orders</h3>
+        <p class="Center">@ViewBag.Message</p>
+        <table class="table table-striped">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.OrderID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Username)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OrderDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Total)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrderID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Username)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OrderDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Total)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.OrderID }, new { @class = "ActionButton" })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
+

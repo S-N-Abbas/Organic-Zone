@@ -1,0 +1,18 @@
+﻿@model Organic_Zone.Models.Order
+@{
+    ViewBag.Title = "Checkout Complete";
+}
+
+<div class="contact-top-agileinfo">
+    <div class="container">
+        <h3 class="title-w3layouts contact-head">Order Completed</h3>
+        <p>Thanks for your order! Your order number is: @Model.OrderID</p>
+        <p>Your order delivery charges are: @Model.DeliveryCharges. </p>
+        <p>Total: @Model.Total</p>
+        <p>You'll be asked to confirm your order. Once confirmed, you'll recieve confirmation email.</p>
+        <p>
+            Go back to: @Html.ActionLink("Home", "Index", "Home")
+
+    </div>
+</div>
+

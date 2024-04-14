@@ -1,0 +1,153 @@
+﻿@model Organic_Zone.ViewModels.OrderDetailsViewModel
+
+@using Organic_Zone.Models
+ 
+@{
+    ViewBag.Title = "Order Details";
+    double Subtotal = 0.0;
+    double TaxAmount = 0.0;
+}
+
+<div class="contact-top-agileinfo">
+    <div class="container">
+        <h3 class="title-w3layouts contact-head">Customer Details</h3>
+        <p class="Center">@ViewBag.Message</p>
+        <table class="table table-striped">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Customer.Username)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Customer.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Customer.LastName)
+                <th>
+                    @Html.DisplayNameFor(model => model.Address.Phone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Address.ShippingAddress)
+                </th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.Customer.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Customer.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Customer.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Address.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Address.ShippingAddress)
+                </td>
+            </tr>
+        </table>
+
+        <div class="row">
+            <div class="col-md-6">
+                <h3 class="title-w3layouts contact-head">Order Details</h3>
+                <table class="table table-striped">
+                    <tr>
+                        <th>
+                            Item Name
+                        </th>
+                        <th>
+                            Quanitity
+                        </th>
+                        <th>
+                            Unit Price
+                        </th>
+                        <th>
+                            Total
+                        </th>
+                    </tr>
+                    @foreach (OrderDetail item in Model.OrderDetails)
+                    {
+                        double total = item.UnitPrice * item.Quantity;
+                        Subtotal += total;
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ItemName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Quantity)
+                            </td>
+                            <td>
+                                &pound;@Html.DisplayFor(modelIteml => item.UnitPrice)
+                            </td>
+                            <td>
+                                &pound;@Html.DisplayFor(modelIteml => (total))
+                            </td>
+                        </tr>
+                    }
+                    <tr>
+                        <th colspan="3">
+                            Subtotal
+                        </th>
+                        <td>
+                            &pound;@Subtotal
+                        </td>
+                    </tr>
+                </table>
+
+                @{
+                    TaxAmount = Subtotal * Model.Order.Tax / 100;
+                }
+            </div>
+            <div class="col-md-6">
+                <h3 class="title-w3layouts contact-head">Order Total</h3>
+                <table class="table table-striped">
+                    <tr>
+                        <th>
+                            Tax
+                        </th>
+                        <td>
+                            &pound;@TaxAmount
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Delivery Charges
+                        </th>
+                        <td>
+                            &pound;@Model.Order.DeliveryCharges
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Total
+                        </th>
+                        <td>
+                            <b>&pound;@Model.Order.Total</b>
+                        </td>
+                    </tr>
+
+                    <tr>
+
+                        @if (Model.Order.Status.ToLower().Contains("waiting"))
+                        {
+                            <td>
+                                @Html.ActionLink("Confirm", "Confirm", "Orders", new { id = Model.Order.OrderID }, new { @class = "ActionButton" })
+                            </td>
+                            <td>
+                                @Html.ActionLink("Cancel", "Cancel", "Orders", new { id = Model.Order.OrderID }, new { @class = "ActionButton" })
+                            </td>
+                        }
+                        else if (Model.Order.Status.ToLower().Contains("confirmed"))
+                        {
+                            <td colspan="2">
+                                @Html.ActionLink("Fulfilled", "Fulfill", "Orders", new { id = Model.Order.OrderID }, new { @class = "ActionButton" })
+                            </td>
+                        }
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

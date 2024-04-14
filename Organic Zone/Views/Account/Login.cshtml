@@ -1,0 +1,44 @@
+﻿@using Organic_Zone.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+
+
+<div class="contact-top-agileinfo">
+    <div class="container">
+        <h3 class="title-w3layouts contact-head">Login to your account</h3>
+    </div>
+</div>
+
+
+<div class="jarallax contact-bottom contact-right-w3l" id="contact">
+    <div class="col-md-7">
+        <h3 class="title-w3layouts white-agileits">Login</h3>
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+
+            @Html.TextBoxFor(m => m.Username, new { placeholder = "Username" })
+
+            @Html.PasswordFor(m => m.Password, new { placeholder = "Password" })
+
+            @Html.CheckBoxFor(m => m.RememberMe)
+            @Html.LabelFor(m => m.RememberMe)
+
+            <p>
+                @Html.ActionLink("Register as a new user", "Register")
+            </p>
+
+            <input type="submit" value="Login" />
+        }
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

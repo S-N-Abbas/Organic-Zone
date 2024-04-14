@@ -1,0 +1,36 @@
+﻿@model Organic_Zone.Models.Customer
+
+@{
+    ViewBag.Title = "Complete Profile";
+}
+<div class="contact-top-agileinfo">
+    <div class="container">
+        <h3 class="title-w3layouts contact-head">Complete your profile</h3>
+    </div>
+</div>
+
+
+<div class="jarallax contact-bottom contact-right-w3l" id="contact">
+    <div class="col-md-7">
+        <h3 class="title-w3layouts white-agileits">Personal Details</h3>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+
+            @Html.TextBoxFor(m => m.FirstName, new { placeholder = "First Name" })
+            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+
+            @Html.TextBoxFor(m => m.LastName, new { placeholder = "Last Name" })
+            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+
+            @Html.LabelFor(m => m.DOB)
+            <input type="date" id="DOB" name="DOB">
+            @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+
+            <input type="submit" value="Save" />
+        }
+    </div>
+    <div class="clearfix"></div>
+</div>

@@ -1,0 +1,32 @@
+﻿@model Organic_Zone.Models.FAQ
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<div class="contact-top-agileinfo">
+    <div class="container">
+        <h3 class="title-w3layouts contact-head">Edit FAQ</h3>
+    </div>
+</div>
+
+
+<div class="jarallax contact-bottom contact-right-w3l" id="contact">
+    <div class="col-md-7">
+        <h3 class="title-w3layouts white-agileits">Edit</h3>
+        @using (Html.BeginForm("Edit", "FAQs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.FAQId)
+
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+
+            @Html.TextBoxFor(m => m.Question, new { placeholder = "Question" })
+
+            @Html.TextAreaFor(m => m.Answer, new { placeholder = "Answer" })
+
+            <input type="submit" value="Save Changes" />
+        }
+    </div>
+    <div class="clearfix"></div>
+</div>

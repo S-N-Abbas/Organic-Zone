@@ -1,0 +1,162 @@
+﻿@model Organic_Zone.ViewModels.ShoppingCartViewModel
+@{
+    ViewBag.Title = "Shopping Cart";
+}
+
+<script src="~/Scripts/toastr.js"></script>
+<script src="~/Scripts/toastr.min.js"></script>
+<link href="~/Content/toastr.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/toastr-min.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/toastr.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+
+    $(function () {
+        // Document.ready -> link up remove event handler
+        $(".RemoveLink").on('click', function () {
+            // Get the id from the link
+            var recordToDelete = $(this).attr("data-id");
+            if (recordToDelete != '') {
+                // Perform the ajax post
+                $.post("/ShoppingCart/RemoveFromCart", { "id": recordToDelete },
+                    function (data) {
+                        // Successful requests get here
+                        // Update the page elements
+                        if (data.ItemCount == 0) {
+                            $('#row-' + data.DeleteID).fadeOut('slow');
+
+                            $('#update-message').html(data.Message);
+                        } else {
+                            $('#item-count-' + data.DeleteID).html(data.ItemCount);
+                        }
+                        $('#cart-total').html(data.CartTotal);
+                        $('#cart-status').html(data.CartCount);
+                    }
+                );
+            }
+        });
+    });
+
+    $(function () {
+        // Document.ready -> link up remove event handler
+        $(".AddLink").click(function () {
+            // Get the id from the link
+            var recordToAdd = $(this).attr("data-id");
+            if (recordToAdd != '') {
+                // Perform the ajax post
+                $.post("/ShoppingCart/AddToCart", { "id": recordToAdd },
+                    function (data) {
+                        // Successful requests get here
+                        // Update the page elements
+                        if (data.ItemCount == 1) {
+                            $(data.Addedli).appendTo('ul.ItemsList');
+                            if ($('div.minicart-subtotal').length) {
+
+                            }
+                            else {
+                                $('.minicart-footer').html(data.Addedfooter);
+                            }
+                        } else {
+                            $('#item-count-' + data.RecordID).html(data.ItemCount);
+                        }
+                        $('#cart-total').html(data.CartTotal);
+                        $('#cart-status').html(data.CartCount);
+                    }
+                );
+            }
+
+            // Display a success toast, with a title
+            var itemName = $(this).attr("data-id");
+
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-bottom-right",
+                "preventDuplicates": true,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            Command: toastr.success(itemName + ' has been added to cart.', 'Shopping Cart');
+
+        });
+    });
+
+    $(function () {
+        // Document.ready -> link up remove event handler
+        $(".CartButton").click(function () {
+            $(document.body).addClass('minicart-showing');
+        });
+    });
+
+    $(function () {
+        // Document.ready -> link up remove event handler
+        $(".minicart-closer").click(function () {
+            $(document.body).removeClass('minicart-showing');
+        });
+    });
+
+</script>
+
+<div id="PPMiniCart">
+    <form>
+        <button type="button" class="minicart-closer">×</button>
+        <ul class="ItemsList">
+            @if (Model.CartItems.Count > 0)
+            {
+                <li class="minicart-item">
+                    <span id="update-message">
+                    </span>
+                </li>
+                foreach (var item in Model.CartItems)
+                {
+                    <li id="row-@item.RecordID" class="minicart-item">
+                        <div class="minicart-details-name">
+                            <a class="minicart-name" href="#">@item.Item.ItemName</a>
+                            @if (item.Item.Discount > 0)
+                            {
+                                <ul class="minicart-attributes">
+                                    <li>Discount: &pound;@item.Item.Discount</li>
+                                </ul>
+                            }
+                        </div>
+                        <div class="minicart-details-quantity">
+                            <span class="minicart-quantity" id="item-count-@item.RecordID">@item.Count</span>
+                        </div>
+                        <div class="minicart-details-remove">
+                            <button type="button" class="minicart-remove RemoveLink" data-id="@item.RecordID">×</button>
+                        </div>
+                        <div class="minicart-details-price">
+                            @{
+                                double price = item.Item.Price - item.Item.Discount;
+                            }
+                            <span class="minicart-price">&pound;@price</span>
+                        </div>
+                    </li>
+
+                }
+
+            }
+        </ul>
+        <div class="minicart-footer">
+            @if (Model.CartItems.Count > 0)
+            {
+                <div class="minicart-subtotal">
+                    Subtotal: &pound;<span id="cart-total">@Model.CartTotal</span> @Html.ActionLink("Checkout", "AddressAndPayment", "Checkout")
+                </div>
+            }
+            else
+            {
+                <p class="minicart-empty-text">Your shopping cart is empty</p>
+            }
+        </div>
+    </form>
+</div>

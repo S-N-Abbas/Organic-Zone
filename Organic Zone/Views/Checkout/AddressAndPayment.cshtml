@@ -1,0 +1,34 @@
+﻿@model Organic_Zone.Models.Address
+
+@{
+    ViewBag.Title = "Address And Payment";
+}
+
+<div class="contact-top-agileinfo">
+    <div class="container">
+        <h3 class="title-w3layouts contact-head">Address and Payment</h3>
+    </div>
+</div>
+
+
+<div class="jarallax contact-bottom contact-right-w3l" id="contact">
+    <div class="col-md-7">
+        <p class="FormDetails">Delivery Charges of &pound;@ViewData["DeliveryCharges"] and 20% tax will be applied.</p>
+
+        @using (Html.BeginForm("AddressAndPayment", "Checkout"))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(m => m.ID)
+
+            @Html.TextBoxFor(m => m.Phone, new { placeholder = "Phone" })
+            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+
+            @Html.TextAreaFor(m => m.ShippingAddress, new { placeholder = "Address" })
+            @Html.ValidationMessageFor(model => model.ShippingAddress, "", new { @class = "text-danger" })
+
+            <input type="submit" value="Place Order" />
+        }
+    </div>
+    <div class="clearfix"></div>
+</div>

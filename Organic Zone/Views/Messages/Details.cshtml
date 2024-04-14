@@ -1,0 +1,63 @@
+﻿@model Organic_Zone.Models.Message
+
+@{ 
+    ViewBag.Title = Model.FirstName + " " + Model.LastName;
+}
+
+<div class="contact-top-agileinfo">
+    <div class="container">
+        <h3 class="title-w3layouts contact-head">Message From @Model.FirstName @Model.LastName</h3>
+        <p>@ViewBag.Message</p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.MessageId)
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.MessageId)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.FirstName)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.LastName)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.Email)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Subject)
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.Subject)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.MessageText)
+                </th>
+                <td>
+                    @Html.DisplayFor(model => model.MessageText)
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
