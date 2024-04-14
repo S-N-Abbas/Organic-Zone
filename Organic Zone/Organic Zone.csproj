@@ -213,6 +213,17 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\contact.jpg" />
+    <Content Include="images\f1.jpg" />
+    <Content Include="images\f2.jpg" />
+    <Content Include="images\Items\Banana\Banana.jpg" />
+    <Content Include="images\Items\Flour\Flour.jpg" />
+    <Content Include="images\Items\Okra\Okra.jpg" />
+    <Content Include="images\Items\Pepper Green\Pepper Green.jpg" />
+    <Content Include="images\Items\Rice\Rice.jpg" />
+    <Content Include="images\sale.jpg" />
+    <Content Include="images\team.jpg" />
+    <Content Include="images\veggies.png" />
     <Content Include="OZLogo.ico" />
     <Content Include="Scripts\bootstrap-3.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
