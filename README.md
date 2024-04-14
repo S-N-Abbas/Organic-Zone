@@ -36,7 +36,7 @@ We welcome contributions to enhance Organic Zone and make it even better! If you
 
 ## Support
 
-For any issues or inquiries, please contact our support team at support@organiczone.com.
+For any issues or inquiries, please contact me at sayyadnaveedabbas@gmail.com.
 
 ## License
 
