@@ -2,6 +2,9 @@
 
 Welcome to Organic Zone, your go-to destination for fresh organic food, including fruits and vegetables. This project is an E-Commerce website built on the .NET Framework 4.8, designed to provide users with a seamless shopping experience for healthy and nutritious products.
 
+![image](https://github.com/S-N-Abbas/Organic-Zone/assets/25863738/26ad0a1e-ad2b-4481-93f3-1195866610c0)
+
+
 ## Features
 
 1. **Browsing and Searching**: Visitors can easily browse through a wide range of organic fruits and vegetables. The search functionality allows users to find specific products quickly.
@@ -15,6 +18,9 @@ Welcome to Organic Zone, your go-to destination for fresh organic food, includin
 5. **Admin Dashboard**: Website administrators have access to a powerful dashboard to manage categories, update product prices, and efficiently handle orders.
 
 6. **Responsive Design**: Organic Zone features a clean and friendly user interface that is modern and responsive across all devices, ensuring a consistent experience for users.
+
+![image](https://github.com/S-N-Abbas/Organic-Zone/assets/25863738/2e41f7fe-923a-40bd-91ff-d7109e6d75fa)
+
 
 ## Getting Started
 
@@ -40,4 +46,4 @@ For any issues or inquiries, please contact me at sayyadnaveedabbas@gmail.com.
 
 ## License
 
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT) - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT)
